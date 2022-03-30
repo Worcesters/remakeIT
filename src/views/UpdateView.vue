@@ -88,6 +88,10 @@ export default {
 </script>
 
 <style lang="scss">
+.overlay__inner__content__right__text {
+    font-size: 1rem;
+    font-weight: 800;
+}
 .button {
   padding: 1em 3em;
   border-radius: 0.5em;
