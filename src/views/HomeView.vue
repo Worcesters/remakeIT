@@ -6,12 +6,12 @@
           <h1>RemakeIT</h1>
         </header>
         <main class="overlay__inner__content">
-          <div class="overlay__inner__content__left" v-on:click="dropImgClick()">
+          <div class="overlay__inner__content__left" @click="dropImgClick()">
             <div class="overlay__inner__content__left__upload">
-              <label class="required" for="upload"></label>
+              <label class="required" for="upload_byfolder"></label>
               <input
                 autocomplete="file"
-                id="upload"
+                id="upload_byfolder"
                 type="file"
                 accept=".png,.jpg,.jpeg,.svg"
                 name="file"
@@ -32,7 +32,7 @@
             <div class="overlay__inner__content__right__text">
               J'importe une image depuis mon ordinateur
             </div>
-            <div class="button gradient" @click="$router.push('/update');">Importer</div>
+            <div class="button gradient" @click="dropImgClick()">Importer</div>
           </div>
         </main>
         <footer class="overlay__inner__footer">
@@ -48,7 +48,7 @@ export default {
   name: "UpdateView",
   methods:{
     dropImgClick: function(){
-      document.getElementById('upload').click()
+      document.getElementById('upload_byfolder').click()
     }
   }
 };
