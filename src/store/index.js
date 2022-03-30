@@ -17,7 +17,8 @@ export default new Vuex.Store({
     updatedImageFileSize: null,
     updatedImageFileType: null,
     isImageLoaded: false,
-    navbarActive: "extension",
+    navbarActive: "filter",
+    selectedFilter: "default",
   },
   getters: {},
   mutations: {
@@ -26,6 +27,9 @@ export default new Vuex.Store({
     },
     updateImageFileType(state, payload) {
       state.updatedImageFileType = payload;
+    },
+    updateFilter(state, payload) {
+      state.selectedFilter = payload;
     },
     setFile(state, payload) {
       state.baseImageURL = payload.url;
@@ -49,13 +53,36 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    async updateImageFileType({ state, commit }) {
+      // https://remake-it.herokuapp.com/api/v1/download
+      const formData = new FormData();
+      formData.append("file", state.baseImageFile);
+
+      const res = await axios.post(
+        `http://localhost:3000/api/v1/download?extension=${state.baseImageFileType}&filter=${state.selectedFilter}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          responseType: "blob",
+        }
+      );
+
+      commit("setUpdatedFile", {
+        url: URL.createObjectURL(res.data),
+        file: res.data,
+        fileName: `RemakeIT-${state.updatedImageFileName}`,
+        fileType: res.data.type.split("/")[1],
+      });
+    },
     async requestUpdatedImageFile({ state, commit }) {
       // https://remake-it.herokuapp.com/api/v1/download
       const formData = new FormData();
       formData.append("file", state.baseImageFile);
 
       const res = await axios.post(
-        `http://localhost:3000/api/v1/download?extension=${state.updatedImageFileType}`,
+        `http://localhost:3000/api/v1/download?extension=${state.updatedImageFileType}&filter=${state.selectedFilter}`,
         formData,
         {
           headers: {
