@@ -4,7 +4,9 @@
       <div class="overlay__inner">
         <header class="overlay__inner__title">
           <h1>RemakeIT</h1>
-          <h3 class="overlay__inner__content__right__text">Modifier mon image en direct !</h3>
+          <h3 class="overlay__inner__content__right__text">
+            Modifier mon image en direct !
+          </h3>
         </header>
         <main class="overlay__inner__content">
           <div class="overlay__inner__content__image-preview">
@@ -89,8 +91,8 @@ export default {
 
 <style lang="scss">
 .overlay__inner__content__right__text {
-    font-size: 1rem;
-    font-weight: 800;
+  font-size: 1rem;
+  font-weight: 800;
 }
 .button {
   padding: 1em 3em;
@@ -168,10 +170,11 @@ export default {
           max-height: 100%;
           padding: 1rem;
           flex: 2;
+          align-items: center;
+          display: flex;
 
           img {
-            max-width: 100%;
-            height: 100%;
+            width: 100%;
             border-radius: 20px;
             box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
           }
