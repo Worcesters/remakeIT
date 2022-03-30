@@ -22,7 +22,7 @@
         </main>
         <footer class="overlay__inner__footer">
           <div class="button red" @click="$router.push('/')">Retour</div>
-          <div class="button gradient">Télécharger</div>
+          <div class="button gradient" @click="downloadImage()">Télécharger</div>
         </footer>
       </div>
     </section>
@@ -51,6 +51,18 @@ export default {
     },
     file() {
       return  this.$store.state.updatedImage;
+    },
+  },
+  methods: {
+    downloadImage() {
+      const imageToDownload = this.$store.state.updatedImage;
+      const downloadLink = document.createElement("a");
+      const fileName = `RemakeIT-${this.$store.state.fileName}`;
+      downloadLink.href = imageToDownload;
+      downloadLink.download = fileName;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
     },
   },
 };
