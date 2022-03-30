@@ -72,7 +72,7 @@ export default {
         .then(() => {
           const imageToDownload = this.$store.state.updatedImageURL;
           const downloadLink = document.createElement("a");
-          const fileName = this.$store.state.fileName;
+          const fileName = this.$store.state.updatedImageFileName;
           console.log("downloadLink", downloadLink);
           downloadLink.href = imageToDownload;
           downloadLink.download = fileName;

@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
+import dayjs from "dayjs";
 
 Vue.use(Vuex);
 
@@ -72,7 +73,7 @@ export default new Vuex.Store({
       commit("setUpdatedFile", {
         url: URL.createObjectURL(res.data),
         file: res.data,
-        fileName: `RemakeIT-${state.updatedImageFileName}`,
+        fileName: `RemakeIT-${dayjs().format('YYYY-MM-DD-HH-mm-ss')}-${state.updatedImageFileName}`,
         fileType: res.data.type.split("/")[1],
       });
     },
@@ -95,7 +96,7 @@ export default new Vuex.Store({
       commit("setUpdatedFile", {
         url: URL.createObjectURL(res.data),
         file: res.data,
-        fileName: `RemakeIT-${state.updatedImageFileName}`,
+        fileName: `RemakeIT-${dayjs().format('YYYY-MM-DD-HH-mm-ss')}-${state.updatedImageFileName}`,
         fileType: res.data.type.split("/")[1],
       });
     },
