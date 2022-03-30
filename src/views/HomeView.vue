@@ -6,7 +6,7 @@
           <h1>RemakeIT</h1>
         </header>
         <main class="overlay__inner__content">
-          <div class="overlay__inner__content__left">
+          <div class="overlay__inner__content__left" v-on:click="dropImgClick()">
             <div class="overlay__inner__content__left__upload">
               <label class="required" for="upload"></label>
               <input
@@ -46,6 +46,11 @@
 <script>
 export default {
   name: "UpdateView",
+  methods:{
+    dropImgClick: function(){
+      document.getElementById('upload').click()
+    }
+  }
 };
 </script>
 
