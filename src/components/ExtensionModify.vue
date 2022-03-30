@@ -75,15 +75,15 @@ export default {
           icon: "bx bx-image",
         },
         {
-          name: "ICO",
-          icon: "bx bx-image",
+          name: "JPEG",
+          icon: "bx bxs-file-jpeg",
         },
         {
           name: "BMP",
           icon: "bx bx-image",
         },
         {
-          name: "HEIC",
+          name: "TIFF",
           icon: "bx bx-image",
         },
       ],
