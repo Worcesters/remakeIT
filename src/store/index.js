@@ -59,7 +59,7 @@ export default new Vuex.Store({
       formData.append("file", state.baseImageFile);
 
       const res = await axios.post(
-        `http://localhost:3000/api/v1/download?extension=${state.baseImageFileType}&filter=${state.selectedFilter}`,
+        `https://remake-it.herokuapp.com/api/v1/download?extension=${state.baseImageFileType}&filter=${state.selectedFilter}`,
         formData,
         {
           headers: {
@@ -82,7 +82,7 @@ export default new Vuex.Store({
       formData.append("file", state.baseImageFile);
 
       const res = await axios.post(
-        `http://localhost:3000/api/v1/download?extension=${state.updatedImageFileType}&filter=${state.selectedFilter}`,
+        `https://remake-it.herokuapp.com/api/v1/download?extension=${state.updatedImageFileType}&filter=${state.selectedFilter}`,
         formData,
         {
           headers: {
