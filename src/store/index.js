@@ -17,7 +17,7 @@ export default new Vuex.Store({
     updatedImageFileSize: null,
     updatedImageFileType: null,
     isImageLoaded: false,
-    navbarActive: "filter",
+    navbarActive: "extension",
   },
   getters: {},
   mutations: {
@@ -41,6 +41,7 @@ export default new Vuex.Store({
       state.isImageLoaded = true;
     },
     setUpdatedFile(state, payload) {
+      console.log("setUpdatedFile", payload);
       state.updatedImageURL = payload.url;
       state.updatedImageFile = payload.file;
       state.updatedImageFileName = payload.fileName;
@@ -54,7 +55,7 @@ export default new Vuex.Store({
       formData.append("file", state.baseImageFile);
 
       const res = await axios.post(
-        `http://localhost:3000/api/v1/download?extension=jpeg&filter=grayScale`,
+        `http://localhost:3000/api/v1/download?extension=${state.updatedImageFileType}`,
         formData,
         {
           headers: {
