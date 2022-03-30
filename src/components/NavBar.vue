@@ -2,10 +2,34 @@
   <div id="navbar">
     <nav class="navbar">
       <ul class="navbar__list">
-        <li class="navbar__list__item active">Filtres</li>
-        <li class="navbar__list__item">Dimensions</li>
-        <li class="navbar__list__item">Extensions</li>
-        <li class="navbar__list__item">Compression</li>
+        <li
+          class="navbar__list__item"
+          :class="navbarActive === 'filter' ? 'active' : ''"
+          @click="updateNavbarActive('filter')"
+        >
+          Filtres
+        </li>
+        <li
+          class="navbar__list__item"
+          :class="navbarActive === 'dimension' ? 'active' : ''"
+          @click="updateNavbarActive('dimension')"
+        >
+          Dimensions
+        </li>
+        <li
+          class="navbar__list__item"
+          :class="navbarActive === 'extension' ? 'active' : ''"
+          @click="updateNavbarActive('extension')"
+        >
+          Extensions
+        </li>
+        <li
+          class="navbar__list__item"
+          :class="navbarActive === 'compression' ? 'active' : ''"
+          @click="updateNavbarActive('compression')"
+        >
+          Compression
+        </li>
       </ul>
     </nav>
   </div>
@@ -14,6 +38,16 @@
 <script>
 export default {
   name: "NavBar",
+  computed: {
+    navbarActive() {
+      return this.$store.state.navbarActive;
+    },
+  },
+  methods: {
+    updateNavbarActive(navbarActive) {
+      this.$store.commit("updateNavbarActive", navbarActive);
+    },
+  }
 };
 </script>
 

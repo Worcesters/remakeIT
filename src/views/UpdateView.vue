@@ -12,7 +12,12 @@
               alt=""
             />
           </div>
-          <div class="overlay__inner__content__modification">MODIF</div>
+          <div class="overlay__inner__content__modification">
+            <FilterModify v-if="navbarActive === 'filter'" />
+            <CompressionModify v-if="navbarActive === 'compression'" />
+            <ExtensionModify v-if="navbarActive === 'extension'" />
+            <DimensionModify v-if="navbarActive === 'dimension'" />
+          </div>
           <NavBar />
         </main>
         <footer class="overlay__inner__footer">
@@ -25,11 +30,24 @@
 
 <script>
 import NavBar from "@/components/NavBar.vue";
+import FilterModify from "@/components/FilterModify.vue";
+import DimensionModify from "@/components/DimensionModify.vue";
+import ExtensionModify from "@/components/ExtensionModify.vue";
+import CompressionModify from "@/components/CompressionModify.vue";
 
 export default {
   name: "UpdateView",
   components: {
     NavBar,
+    FilterModify,
+    DimensionModify,
+    ExtensionModify,
+    CompressionModify,
+  },
+  computed: {
+    navbarActive() {
+      return this.$store.state.navbarActive;
+    }
   },
 };
 </script>
@@ -64,7 +82,7 @@ export default {
   .overlay {
     background: blue;
     padding: 3rem 0 3rem 3rem;
-    min-width: 40vw;
+    min-width: 70vw;
     background: rgba(255, 255, 255, 0.375);
     box-shadow: 0 0.75rem 2rem 0 rgb(0 0 0 / 10%);
     border-radius: 2rem;

@@ -8,10 +8,15 @@ export default new Vuex.Store({
     baseImage: '',
     updatedImage: '',
     isImageLoaded: false,
+    navbarActive: 'filter',
   },
   getters: {
   },
   mutations: {
+    // updateNavbarActive
+    updateNavbarActive(state, payload) {
+      state.navbarActive = payload
+    }
   },
   actions: {
   },
