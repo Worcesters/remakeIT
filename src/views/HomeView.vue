@@ -6,17 +6,37 @@
           <h1>RemakeIT</h1>
         </header>
         <main class="overlay__inner__content">
-          <div class="overlay__inner__content__image-preview">
-            <img
-              src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-              alt=""
-            />
+          <div class="overlay__inner__content__left">
+            <div class="overlay__inner__content__left__upload">
+              <label class="required" for="upload"></label>
+              <input
+                autocomplete="file"
+                id="upload"
+                type="file"
+                accept=".png,.jpg,.jpeg,.svg"
+                name="file"
+                class="form__input"
+                placeholder="Importer ou drop une image"
+                required
+              />
+              <div class="icon">
+                <i class="bx bx-upload"></i>
+              </div>
+            </div>
+            <div class="overlay__inner__content__left__text">
+              Glisser - Déposer
+            </div>
           </div>
-          <div class="overlay__inner__content__modification">MODIF</div>
-          <NavBar />
+          <div class="overlay__inner__content__separator"></div>
+          <div class="overlay__inner__content__right">
+            <div class="overlay__inner__content__right__text">
+              J'importe une image depuis mon ordinateur
+            </div>
+            <div class="button gradient" @click="$router.push('/update');">Importer</div>
+          </div>
         </main>
         <footer class="overlay__inner__footer">
-          <div class="button gradient">Télécharger</div>
+          <h3>Made with ❤️ by bcp de gens</h3>
         </footer>
       </div>
     </section>
@@ -24,17 +44,30 @@
 </template>
 
 <script>
-import NavBar from "@/components/NavBar.vue";
-
 export default {
-  name: "HomeView",
-  components: {
-    NavBar,
-  },
+  name: "UpdateView",
 };
 </script>
 
 <style lang="scss">
+.button {
+  padding: 1em 3em;
+  border-radius: 0.5em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background: linear-gradient(45deg, #7a3af9 25%, #e1079a);
+  color: #fff;
+  box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+      rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  }
+}
+
 #homeView {
   background: #f8f8ff;
   min-height: 100vh;
@@ -45,12 +78,12 @@ export default {
 
   .overlay {
     background: blue;
-    padding: 3rem 0 3rem 3rem;
+    padding: 3rem;
     min-width: 40vw;
     background: rgba(255, 255, 255, 0.375);
     box-shadow: 0 0.75rem 2rem 0 rgb(0 0 0 / 10%);
     border-radius: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.125);
+    border: 1px solid linear-gradient(45deg, #7a3af9 25%, #e1079a);
 
     &__inner {
       min-width: 100%;
@@ -77,20 +110,69 @@ export default {
         align-items: center;
         flex: 2;
         width: 100%;
+        gap: 2rem;
 
-        &__image-preview {
-          width: 40%;
-          padding: 3rem;
+        &__left {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          flex: 1;
+          gap: 1.5rem;
 
-          img {
-            width: 100%;
+          &__upload {
+            height: 20rem;
+            width: 20rem;
+            border: 2px dashed #7a3af9;
             border-radius: 20px;
-            box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+              filter: brightness(0.8);
+              background: #7a3af920;
+            }
+
+            .icon {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              i {
+                font-size: 5rem;
+                color: #7a3af9;
+              }
+            }
+          }
+
+          &__text {
+            font-size: 1rem;
+            font-weight: 800;
           }
         }
 
-        &__modification {
-          flex: 2;
+        &__separator {
+          border-left: 1px dashed #7a3af9;
+          height: 15rem;
+        }
+
+        &__right {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          flex: 1;
+          gap: 2rem;
+
+          &__text {
+            font-size: 1rem;
+            font-weight: 800;
+          }
         }
       }
 
@@ -98,24 +180,6 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-
-        .button {
-          padding: 1em 3em;
-          border-radius: 0.5em;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.2s ease-in-out;
-          background: linear-gradient(45deg, #7a3af9 25%, #e1079a);
-          color: #fff;
-          box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
-          transition: all 0.2s ease-in-out;
-
-          &:hover {
-            transform: translateY(-3px);
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-              rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-          }
-        }
       }
     }
   }
