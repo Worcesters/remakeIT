@@ -59,15 +59,25 @@ export default {
     },
     dragFile(e) {
       this.File = e.dataTransfer.files;
+      const file = this.File[0]
+      const url = URL.createObjectURL(file)
       //console.log(this.File)
-      this.uploadFile(e)
+      this.$store.commit('setFile', {
+        file,
+        url,
+        fileName: file.name,
+        fileSize: file.size,
+        fileType: file.name.split('.').pop(),
+      })
+      this.$router.push('/update')
     },
     uploadFile(e) {
       console.log(e)
       console.log(e.target.files)
+    
       const file = e.target.files[0]
       const url = URL.createObjectURL(file)
-
+  
       // Save file in store
       this.$store.commit('setFile', {
         file,
