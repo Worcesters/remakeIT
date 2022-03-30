@@ -4,6 +4,7 @@
       <div class="overlay__inner">
         <header class="overlay__inner__title">
           <h1>RemakeIT</h1>
+          <h3 class="overlay__inner__content__right__text">Modifier mon image en direct !</h3>
         </header>
         <main class="overlay__inner__content">
           <div class="overlay__inner__content__image-preview">
@@ -144,6 +145,7 @@ export default {
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
+          text-align: left;
         }
       }
 
