@@ -4,10 +4,11 @@
       <div class="overlay__inner">
         <header class="overlay__inner__title">
           <h1>RemakeIT</h1>
+          <h3 class="overlay__inner__content__right__text">Importer une image pour commencer !</h3>
         </header>
         <main class="overlay__inner__content">
-          <div class="overlay__inner__content__left" @click="dropImgClick()">
-            <div class="overlay__inner__content__left__upload">
+          <div class="overlay__inner__content__left" @dragover.prevent @drop.prevent @click="dropImgClick()">
+            <div class="overlay__inner__content__left__upload" @drop="dragFile">
               <label class="required" for="upload_byfolder"></label>
               <input
                 autocomplete="file"
@@ -47,11 +48,23 @@
 <script>
 export default {
   name: "UpdateView",
+  data(){
+    return {
+      File: '' // Store our uploaded files
+    }
+  },
   methods:{
     dropImgClick() {
       document.getElementById('upload_byfolder').click()
     },
+    dragFile(e) {
+      this.File = e.dataTransfer.files;
+      //console.log(this.File)
+      this.uploadFile(e)
+    },
     uploadFile(e) {
+      console.log(e)
+      console.log(e.target.files)
       const file = e.target.files[0]
       const url = URL.createObjectURL(file)
 
@@ -70,9 +83,11 @@ export default {
 </script>
 
 <style lang="scss">
+
 #upload_byfolder{
   visibility: hidden;
 }
+
 .button {
   padding: 1em 3em;
   border-radius: 0.5em;
@@ -124,6 +139,10 @@ export default {
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
+          text-align: left;
+        }
+        h3{
+          margin: 2rem 0 1rem 0;
         }
       }
 
