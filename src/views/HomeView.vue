@@ -59,6 +59,9 @@ export default {
       this.$store.commit('setFile', {
         file,
         url,
+        fileName: file.name,
+        fileSize: file.size,
+        fileType: file.name.split('.').pop(),
       })
       this.$router.push('/update')
     }

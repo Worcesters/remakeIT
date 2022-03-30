@@ -123,13 +123,16 @@ export default {
         align-items: center;
         flex: 2;
         width: 100%;
+        max-height: 60vh;
 
         &__image-preview {
           max-width: 50%;
+          max-height: 100%;
           padding: 1rem;
 
           img {
-            width: 100%;
+            max-width: 100%;
+            height: 100%;
             border-radius: 20px;
             box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
           }

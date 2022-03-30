@@ -5,8 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    baseImage: null,
-    updatedImage: null,
+    baseImageURL: null,
+    baseImageFile: null,
+    baseImageFileName: null,
+    baseImageFileSize: null,
+    baseImageFileType: null,
+    updatedImageURL: null,
+    updatedImageFile: null,
+    updatedImageFileName: null,
+    updatedImageFileSize: null,
+    updatedImageFileType: null,
     isImageLoaded: false,
     navbarActive: 'filter',
   },
@@ -16,11 +24,22 @@ export default new Vuex.Store({
     updateNavbarActive(state, payload) {
       state.navbarActive = payload
     },
+    updateImageFileType(state, payload) {
+      state.updatedImageFileType = payload
+    },
     setFile(state, payload) {
-      state.baseImage = payload.url
+      state.baseImageURL = payload.url
+      state.baseImageFile = payload.file
+      state.baseImageFileName = payload.fileName
+      state.baseImageFileSize = payload.fileSize
+      state.baseImageFileType = payload.fileType
       state.updatedImage = payload.url
+      state.updatedImageFile = payload.file
+      state.updatedImageFileName = payload.fileName
+      state.updatedImageFileSize = payload.fileSize
+      state.updatedImageFileType = payload.fileType
       state.isImageLoaded = true
-    }
+    },
   },
   actions: {
   },
