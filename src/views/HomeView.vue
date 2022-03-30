@@ -17,6 +17,7 @@
                 name="file"
                 class="form__input"
                 placeholder="Importer ou drop une image"
+                @change="uploadFile"
                 required
               />
               <div class="icon">
@@ -47,8 +48,19 @@
 export default {
   name: "UpdateView",
   methods:{
-    dropImgClick: function(){
+    dropImgClick() {
       document.getElementById('upload_byfolder').click()
+    },
+    uploadFile(e) {
+      const file = e.target.files[0]
+      const url = URL.createObjectURL(file)
+
+      // Save file in store
+      this.$store.commit('setFile', {
+        file,
+        url,
+      })
+      this.$router.push('/update')
     }
   }
 };

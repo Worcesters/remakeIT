@@ -5,17 +5,21 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    baseImage: '',
-    updatedImage: '',
+    baseImage: null,
+    updatedImage: null,
     isImageLoaded: false,
     navbarActive: 'filter',
   },
   getters: {
   },
   mutations: {
-    // updateNavbarActive
     updateNavbarActive(state, payload) {
       state.navbarActive = payload
+    },
+    setFile(state, payload) {
+      state.baseImage = payload.url
+      state.updatedImage = payload.url
+      state.isImageLoaded = true
     }
   },
   actions: {
