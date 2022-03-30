@@ -70,6 +70,9 @@ export default {
 </script>
 
 <style lang="scss">
+#upload_byfolder{
+  visibility: hidden;
+}
 .button {
   padding: 1em 3em;
   border-radius: 0.5em;
