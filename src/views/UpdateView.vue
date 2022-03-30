@@ -7,10 +7,7 @@
         </header>
         <main class="overlay__inner__content">
           <div class="overlay__inner__content__image-preview">
-            <img
-              :src="file"
-              alt=""
-            />
+            <img :src="file" alt="" />
           </div>
           <div class="overlay__inner__content__modification">
             <FilterModify v-if="navbarActive === 'filter'" />
@@ -22,7 +19,9 @@
         </main>
         <footer class="overlay__inner__footer">
           <div class="button red" @click="$router.push('/')">Retour</div>
-          <div class="button gradient" @click="downloadImage()">Télécharger</div>
+          <div class="button gradient" @click="downloadImage()">
+            Télécharger
+          </div>
         </footer>
       </div>
     </section>
@@ -50,8 +49,15 @@ export default {
       return this.$store.state.navbarActive;
     },
     file() {
-      return  this.$store.state.updatedImage;
+      return this.$store.state.updatedImage;
     },
+  },
+  created() {
+    const baseImageURL = this.$store.state.baseImageURL;
+    console.log(baseImageURL);
+    if (!baseImageURL) {
+      this.$router.push("/");
+    }
   },
   methods: {
     downloadImage() {
@@ -139,8 +145,10 @@ export default {
 
         &__image-preview {
           max-width: 50%;
+          height: 100%;
           max-height: 100%;
           padding: 1rem;
+          flex: 2;
 
           img {
             max-width: 100%;
@@ -148,10 +156,6 @@ export default {
             border-radius: 20px;
             box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
           }
-        }
-
-        &__modification {
-          flex: 2;
         }
       }
 
