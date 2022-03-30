@@ -49,26 +49,38 @@ export default {
       return this.$store.state.navbarActive;
     },
     file() {
-      return this.$store.state.updatedImage;
+      return this.$store.state.updatedImageURL;
     },
   },
   created() {
     const baseImageURL = this.$store.state.baseImageURL;
-    console.log(baseImageURL);
+    console.log("Created", baseImageURL);
     if (!baseImageURL) {
       this.$router.push("/");
     }
   },
   methods: {
     downloadImage() {
-      const imageToDownload = this.$store.state.updatedImage;
-      const downloadLink = document.createElement("a");
-      const fileName = `RemakeIT-${this.$store.state.fileName}`;
-      downloadLink.href = imageToDownload;
-      downloadLink.download = fileName;
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
+      this.$store
+        .dispatch("requestUpdatedImageFile", {
+          file: this.$store.state.updatedImage,
+        })
+
+        .then(() => {
+          const imageToDownload = this.$store.state.updatedImage;
+          const downloadLink = document.createElement("a");
+          const fileName = this.$store.state.fileName;
+          console.log("downloadLink", downloadLink);
+          downloadLink.href = imageToDownload;
+          downloadLink.download = fileName;
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+          document.body.removeChild(downloadLink);
+        })
+
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
 };
