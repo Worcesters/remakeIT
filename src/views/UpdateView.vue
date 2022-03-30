@@ -144,6 +144,7 @@ export default {
         max-height: 60vh;
 
         &__image-preview {
+          min-width: 50%;
           max-width: 50%;
           height: 100%;
           max-height: 100%;
