@@ -228,6 +228,7 @@ body {
           flex: 2;
           align-items: center;
           display: flex;
+          justify-content: center;
 
           &__wrapper {
             position: relative;
