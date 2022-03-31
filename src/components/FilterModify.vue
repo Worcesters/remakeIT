@@ -80,9 +80,11 @@ export default {
       }
 
       &.active {
-        background: linear-gradient(45deg, #7a3af9 25%, #e1079a);
+        background: linear-gradient(45deg,
+                var(--base) 25%,
+                var(--complimentary2));  
         color: #fff;
-        border: 3px solid #e1079a;
+        border: 3px solid #f5f5f5;
       }
     }
   }

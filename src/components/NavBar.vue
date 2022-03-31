@@ -75,8 +75,15 @@ export default {
           transform: translateY(-3px);
           box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
             rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-          background: linear-gradient(45deg, #7a3af9 25%, #e1079a);
+          background: linear-gradient(45deg,
+                var(--base) 25%,
+                var(--complimentary2));  
           color: #fff;
+        }
+        &.active{
+          border-left: 3px solid #f5f5f5;
+          border-top: 3px solid #f5f5f5;
+          border-bottom: 3px solid #f5f5f5;
         }
       }
     }

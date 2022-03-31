@@ -9,6 +9,7 @@
           </h3>
         </header>
         <main class="overlay__inner__content">
+          <canvas class="orb-canvas"></canvas>
           <div class="overlay__inner__content__image-preview">
             <img :src="file" alt="" />
           </div>
@@ -133,7 +134,9 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  background: linear-gradient(45deg, #7a3af9 25%, #e1079a);
+  background: linear-gradient(45deg,
+                var(--base) 25%,
+                var(--complimentary2));  
   color: #fff;
   box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
   transition: all 0.2s ease-in-out;
@@ -178,7 +181,9 @@ body {
         h1 {
           font-size: 2rem;
           font-weight: 800;
-          background: linear-gradient(45deg, #7a3af9 25%, #e1079a);
+          background: linear-gradient(45deg,
+                var(--base) 25%,
+                var(--complimentary2));
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
