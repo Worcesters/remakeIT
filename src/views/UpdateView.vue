@@ -218,6 +218,7 @@ body {
         flex: 2;
         width: 100%;
         max-height: 60vh;
+        overflow: clip;
 
         &__image-preview {
           min-width: 50%;
