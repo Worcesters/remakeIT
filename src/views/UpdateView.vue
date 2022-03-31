@@ -89,10 +89,10 @@ export default {
         })
 
         .then(() => {
+          console.log(imageToDownload, fileName);
           const imageToDownload = this.$store.state.updatedImageURL;
           const downloadLink = document.createElement("a");
           const fileName = this.$store.state.updatedImageFileName;
-          console.log("downloadLink", downloadLink);
           downloadLink.href = imageToDownload;
           downloadLink.download = fileName;
           document.body.appendChild(downloadLink);

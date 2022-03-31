@@ -61,7 +61,7 @@ export default new Vuex.Store({
       formData.append("file", state.baseImageFile);
 
       const res = await axios.post(
-        `https://remake-it.herokuapp.com/api/v1/download?extension=${state.baseImageFileType}&filter=${state.selectedFilter}`,
+        `https://remake-it.herokuapp.com/api/v1/download?filter=${state.selectedFilter}`,
         formData,
         {
           headers: {
@@ -71,11 +71,14 @@ export default new Vuex.Store({
         }
       );
 
+      const newFileType = res.headers["content-type"].split("/")[1];
+      const imageName = state.baseImageFileName.split(".")[0];
+
       commit("setUpdatedFile", {
         url: URL.createObjectURL(res.data),
         file: res.data,
-        fileName: `RemakeIT-${dayjs().format('YYYY-MM-DD-HH-mm-ss')}-${state.updatedImageFileName}`,
-        fileType: res.data.type.split("/")[1],
+        fileName: `RemakeIT-${dayjs().format('YYYY-MM-DD-HH-mm-ss')}-${imageName}.${newFileType}`,
+        fileType: newFileType,
       });
     },
     async requestUpdatedImageFile({ state, commit }) {
@@ -95,10 +98,13 @@ export default new Vuex.Store({
         }
       );
 
+      const newFileType = res.headers["content-type"].split("/")[1];
+      const imageName = state.baseImageFileName.split(".")[0];
+
       commit("setUpdatedFile", {
         url: URL.createObjectURL(res.data),
         file: res.data,
-        fileName: `RemakeIT-${dayjs().format('YYYY-MM-DD-HH-mm-ss')}-${state.updatedImageFileName}`,
+        fileName: `RemakeIT-${dayjs().format('YYYY-MM-DD-HH-mm-ss')}-${imageName}.${newFileType}`,
         fileType: res.data.type.split("/")[1],
       });
     },
