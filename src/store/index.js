@@ -24,6 +24,7 @@ export default new Vuex.Store({
     isImageLoading: false,
     newImageWidth: null,
     newImageHeight: null,
+    currentCompression: 0,
   },
   getters: {},
   mutations: {
@@ -41,6 +42,9 @@ export default new Vuex.Store({
     },
     updateImageNewHeight(state, payload) {
       state.newImageHeight = payload;
+    },
+    updateCompression(state, payload) {
+      state.currentCompression = payload;
     },
     setFile(state, payload) {
       state.baseImageURL = payload.url;
@@ -84,7 +88,8 @@ export default new Vuex.Store({
       state.isImageLoading = false;
       state.newImageWidth = null;
       state.newImageHeight = null;
-    }
+      state.currentCompression = 0;
+    },
   },
   actions: {
     async updateImageFileType({ state, commit }) {
@@ -110,7 +115,9 @@ export default new Vuex.Store({
       commit("setUpdatedFile", {
         url: URL.createObjectURL(res.data),
         file: res.data,
-        fileName: `RemakeIT-${dayjs().format('YYYY-MM-DD-HH-mm-ss')}-${imageName}.${newFileType}`,
+        fileName: `RemakeIT-${dayjs().format(
+          "YYYY-MM-DD-HH-mm-ss"
+        )}-${imageName}.${newFileType}`,
         fileType: newFileType,
       });
     },
@@ -121,9 +128,10 @@ export default new Vuex.Store({
       formData.append("file", state.baseImageFile);
       const width = state.newImageWidth || state.baseImageWidth;
       const height = state.newImageHeight || state.baseImageHeight;
+      const compression = 100 - state.currentCompression;
 
       const res = await axios.post(
-        `https://remake-it.herokuapp.com/api/v1/download?extension=${state.updatedImageFileType}&filter=${state.selectedFilter}&width=${width}&height=${height}`,
+        `https://remake-it.herokuapp.com/api/v1/download?extension=${state.updatedImageFileType}&filter=${state.selectedFilter}&width=${width}&height=${height}&compression=${compression}`,
         formData,
         {
           headers: {
@@ -139,7 +147,9 @@ export default new Vuex.Store({
       commit("setUpdatedFile", {
         url: URL.createObjectURL(res.data),
         file: res.data,
-        fileName: `RemakeIT-${dayjs().format('YYYY-MM-DD-HH-mm-ss')}-${imageName}.${newFileType}`,
+        fileName: `RemakeIT-${dayjs().format(
+          "YYYY-MM-DD-HH-mm-ss"
+        )}-${imageName}.${newFileType}`,
         fileType: res.data.type.split("/")[1],
       });
     },

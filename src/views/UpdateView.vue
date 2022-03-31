@@ -134,7 +134,6 @@ body {
   min-height: 100vh;
   display: grid;
   place-items: center;
-  padding: 2rem;
   font-family: var(--font-family);
   color: var(--dark-color);
   background: var(--bg-gradient);
@@ -240,7 +239,11 @@ body {
             position: relative;
             border-radius: 20px;
             overflow: clip;
-            height: 100%;
+            max-height: 100%;
+            display: flex;
+            align-items: center;
+            overflow: clip;
+            box-shadow: 0 0.75rem 2rem 0 rgb(0 0 0 / 10%);
 
             &__loader {
               position: absolute;

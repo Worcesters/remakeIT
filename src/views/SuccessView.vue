@@ -1,17 +1,26 @@
 <template>
-  <div id="ValidationView">
+  <div id="successView">
     <section class="overlay">
       <div class="overlay__inner">
         <header class="overlay__inner__title">
           <h1>RemakeIT</h1>
         </header>
         <main class="overlay__inner__content">
-          <h3 class="overlay__inner__content__right__text">
+          <h3 class="overlay__inner__content__title">
             Merci d'avoir utiliser notre application !
           </h3>
         </main>
+        <section class="overlay__inner__manga"></section>
         <footer class="overlay__inner__footer">
-          <div class="button red" @click="backHome">Retour</div>
+          <div class="button black">
+            <i class="bx bxl-github"></i>
+            <a href=" https://github.com/TheoBIET/remakeIT" target="_blank">
+              Github
+            </a>
+          </div>
+          <div class="button red" @click="backHome">
+            <i class="bx bx-home-alt"></i><span>Accueil</span>
+          </div>
         </footer>
       </div>
     </section>
@@ -27,6 +36,9 @@ export default {
     },
     file() {
       return this.$store.state.updatedImageURL;
+    },
+    baseFile() {
+      return this.$store.state.baseImageURL;
     },
   },
   methods: {
@@ -54,12 +66,12 @@ export default {
     hsl(var(--hue), 95%, 84%)
   );
 }
+
 body {
   max-width: 1920px;
   min-height: 100vh;
   display: grid;
   place-items: center;
-  padding: 2rem;
   font-family: var(--font-family);
   color: var(--dark-color);
   background: var(--bg-gradient);
@@ -89,9 +101,20 @@ body {
   color: #fff;
   box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
   transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  i {
+    font-size: 1.5rem;
+  }
 
   &.red {
     background: linear-gradient(45deg, #f44336 25%, #e1079a);
+  }
+
+  &.black {
+    background: linear-gradient(45deg, #333 15%, #333);
   }
 
   &:hover {
@@ -101,7 +124,7 @@ body {
   }
 }
 
-#ValidationView {
+#successView {
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -146,9 +169,22 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        flex: 2;
         width: 100%;
         max-height: 60vh;
+
+        &__title {
+          font-size: 2rem;
+          font-weight: 800;
+          background: linear-gradient(
+            45deg,
+            var(--base) 25%,
+            var(--complimentary2)
+          );
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          text-align: left;
+        }
 
         &__image-preview {
           min-width: 50%;
@@ -168,6 +204,10 @@ body {
             box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
           }
         }
+      }
+
+      &__manga {
+        flex: 2;
       }
 
       &__footer {

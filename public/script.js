@@ -216,7 +216,7 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function(event) { 
+document.addEventListener("DOMContentLoaded", function() { 
   var divsToHideSucess = document.getElementsByClassName('message_sucess')
   var divsToHideError = document.getElementsByClassName('message_error')
 
@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.getElementsByClassName('message_sucess')[i].style.display = "none";
       }
     }else if (divsToHideError){
-      for(var i = 0; i < divsToHideError.length; i++){
+      for(var x = 0; x < divsToHideError.length; x++){
         document.getElementsByClassName('message_error')[i].style.display = "none";
       }
     }
