@@ -218,6 +218,7 @@ body {
         flex: 2;
         width: 100%;
         max-height: 60vh;
+        overflow: clip;
 
         &__image-preview {
           min-width: 50%;
@@ -228,12 +229,14 @@ body {
           flex: 2;
           align-items: center;
           display: flex;
+          justify-content: center;
 
           &__wrapper {
             position: relative;
             border-radius: 20px;
             overflow: clip;
             box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+            height: 100%;
 
             &__loader {
               position: absolute;
@@ -257,6 +260,8 @@ body {
             &__image {
               border-radius: 20px;
               display: flex;
+              width: 100%;
+              height: 100%;
 
               img {
                 width: 100%;
