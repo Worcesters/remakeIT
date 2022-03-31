@@ -118,7 +118,7 @@ export default {
 body {
   display: grid;
   place-items: center;
-  padding: 2rem;
+  padding: 0;
   overflow: clip;
   font-family: var(--font-family);
   color: var(--dark-color);
