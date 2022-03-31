@@ -7,11 +7,11 @@
         </header>
         <main class="overlay__inner__content">
           <h3 class="overlay__inner__content__right__text">
-           Merci d'avoir utiliser notre application !
+            Merci d'avoir utiliser notre application !
           </h3>
         </main>
         <footer class="overlay__inner__footer">
-          <div class="button red" @click="$router.push('/')">Retour</div>
+          <div class="button red" @click="backHome">Retour</div>
         </footer>
       </div>
     </section>
@@ -19,8 +19,6 @@
 </template>
 
 <script>
-
-
 export default {
   name: "ValidateView",
   computed: {
@@ -32,7 +30,10 @@ export default {
     },
   },
   methods: {
-   
+    backHome() {
+      this.$store.commit("clearState");
+      this.$router.push("/");
+    },
   },
 };
 </script>
@@ -47,9 +48,11 @@ export default {
 
   --font-family: "Poppins", system-ui;
 
-  --bg-gradient: linear-gradient(to bottom,
-          hsl(var(--hue), 95%, 99%),
-          hsl(var(--hue), 95%, 84%));
+  --bg-gradient: linear-gradient(
+    to bottom,
+    hsl(var(--hue), 95%, 99%),
+    hsl(var(--hue), 95%, 84%)
+  );
 }
 body {
   max-width: 1920px;
@@ -82,9 +85,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  background: linear-gradient(45deg,
-                var(--base) 25%,
-                var(--complimentary2));  
+  background: linear-gradient(45deg, var(--base) 25%, var(--complimentary2));
   color: #fff;
   box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
   transition: all 0.2s ease-in-out;
@@ -129,9 +130,11 @@ body {
         h1 {
           font-size: 2rem;
           font-weight: 800;
-          background: linear-gradient(45deg,
-                var(--base) 25%,
-                var(--complimentary2));
+          background: linear-gradient(
+            45deg,
+            var(--base) 25%,
+            var(--complimentary2)
+          );
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
