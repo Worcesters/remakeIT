@@ -20,6 +20,8 @@ export default new Vuex.Store({
     navbarActive: "filter",
     selectedFilter: "default",
     isImageLoading: false,
+    newImageWidth: null,
+    newImageHeight: null,
   },
   getters: {},
   mutations: {
@@ -31,6 +33,12 @@ export default new Vuex.Store({
     },
     updateFilter(state, payload) {
       state.selectedFilter = payload;
+    },
+    updateImageNewWidth(state, payload) {
+      state.newImageWidth = payload;
+    },
+    updateImageNewHeight(state, payload) {
+      state.newImageHeight = payload;
     },
     setFile(state, payload) {
       state.baseImageURL = payload.url;
@@ -90,9 +98,11 @@ export default new Vuex.Store({
       // https://remake-it.herokuapp.com/api/v1/download
       const formData = new FormData();
       formData.append("file", state.baseImageFile);
+      const width = state.newImageWidth ?? state.baseImageWidth;
+      const height = state.newImageHeight ?? state.baseImageHeight;
 
       const res = await axios.post(
-        `https://remake-it.herokuapp.com/api/v1/download?extension=${state.updatedImageFileType}&filter=${state.selectedFilter}`,
+        `https://remake-it.herokuapp.com/api/v1/download?extension=${state.updatedImageFileType}&filter=${state.selectedFilter}&width=${width}&height=${height}`,
         formData,
         {
           headers: {

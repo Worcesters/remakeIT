@@ -10,10 +10,10 @@
           <div class="dimension__tools__percentage__input">
             <input
               type="range"
-              v-model="currentPercentage"
-              min="-100"
+              :value="currentPercentage"
+              min="-99"
               max="100"
-              value="0"
+              @input="updatePercentage"
             />
             <div
               v-if="currentPercentage > 0"
@@ -30,9 +30,7 @@
           </div>
         </div>
         <div class="dimension__tools__brut">
-          <div class="dimension__tools__brut__title">
-            Avec les dimension :
-          </div>
+          <div class="dimension__tools__brut__title">Avec les dimension :</div>
           <div class="dimension__tools__brut__input">
             <input
               type="number"
@@ -69,8 +67,6 @@ export default {
   data() {
     return {
       currentPercentage: 0,
-      newWidth: 0,
-      newHeight: 0,
     };
   },
   computed: {
@@ -80,6 +76,12 @@ export default {
     baseHeight() {
       return this.$store.state.baseImageHeight;
     },
+    newWidth() {
+      return this.$store.state.newImageWidth;
+    },
+    newHeight() {
+      return this.$store.state.newImageHeight;
+    },
   },
   methods: {
     reset() {
@@ -88,10 +90,22 @@ export default {
       this.newHeight = 0;
     },
     updateHeight(e) {
-      this.newHeight = e.target.value;
+      this.$store.commit("updateImageNewHeight", e.target.value);
     },
     updateWidth(e) {
-      this.newWidth = e.target.value;
+      this.$store.commit("updateImageNewWidth", e.target.value);
+    },
+    updatePercentage(e) {
+      const pct = e.target.value;
+      const newWidth = Math.floor(
+        this.baseWidth + this.baseWidth * (pct / 100)
+      );
+      const newHeight = Math.floor(
+        this.baseHeight + this.baseHeight * (pct / 100)
+      );
+      this.$store.commit("updateImageNewHeight", newHeight);
+      this.$store.commit("updateImageNewWidth", newWidth);
+      this.currentPercentage = pct;
     },
   },
 };
@@ -105,6 +119,7 @@ export default {
   justify-content: center;
   width: 100%;
   height: 100%;
+  padding: 0.5rem;
 
   &__title {
     font-size: 1.5em;
@@ -120,47 +135,52 @@ export default {
     gap: 1.5rem;
 
     &__percentage {
-        &__title {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 1em;
-        }
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
 
-        input[type="range"] {
-            width: 100%;
-            background: transparent;
-            border: none;
-        }
+      &__title {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 1em;
+      }
+
+      input[type="range"] {
+        width: 100%;
+        background: transparent;
+        border: none;
+      }
     }
 
     &__brut {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      &__title {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 1em;
+      }
+
+      &__input {
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-    
-        &__title {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 1em;
-        }
+        gap: 1rem;
 
-        &__input {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-
-            input[type="number"] {
-                width: 5rem;
-                text-align: center;
-                border: none;
-                border-radius: 0.5em;
-                font-size: 1.5em;
-                padding: 0.1em;
-                font-weight: bold;
-            }
+        input[type="number"] {
+          width: 5rem;
+          text-align: center;
+          border: none;
+          border-radius: 0.5em;
+          font-size: 1.5em;
+          padding: 0.1em;
+          font-weight: bold;
         }
+      }
     }
   }
 }
