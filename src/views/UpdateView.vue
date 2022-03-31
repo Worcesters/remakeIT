@@ -37,7 +37,7 @@
           <NavBar />
         </main>
         <footer class="overlay__inner__footer">
-          <div class="button red" @click="$router.push('/')">Retour</div>
+          <div class="button red" @click="backHome()">Retour</div>
           <div class="button gradient" @click="downloadImage()">
             Télécharger
           </div>
@@ -103,6 +103,10 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+    },
+    backHome() {
+      this.$store.commit("clearState");
+      this.$router.push("/");
     },
   },
 };

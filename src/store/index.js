@@ -12,6 +12,8 @@ export default new Vuex.Store({
     baseImageFileName: null,
     baseImageFileSize: null,
     baseImageFileType: null,
+    baseImageWidth: null,
+    baseImageHeight: null,
     updatedImageURL: null,
     updatedImageFile: null,
     updatedImageFileName: null,
@@ -64,6 +66,25 @@ export default new Vuex.Store({
       state.updatedImageFileType = payload.fileType;
       state.isImageLoading = false;
     },
+    clearState(state) {
+      state.baseImageURL = null;
+      state.baseImageFile = null;
+      state.baseImageFileName = null;
+      state.baseImageFileSize = null;
+      state.baseImageFileType = null;
+      state.baseImageWidth = null;
+      state.baseImageHeight = null;
+      state.updatedImageURL = null;
+      state.updatedImageFile = null;
+      state.updatedImageFileName = null;
+      state.updatedImageFileSize = null;
+      state.updatedImageFileType = null;
+      state.navbarActive = "filter";
+      state.selectedFilter = "default";
+      state.isImageLoading = false;
+      state.newImageWidth = null;
+      state.newImageHeight = null;
+    }
   },
   actions: {
     async updateImageFileType({ state, commit }) {
@@ -98,8 +119,8 @@ export default new Vuex.Store({
       // https://remake-it.herokuapp.com/api/v1/download
       const formData = new FormData();
       formData.append("file", state.baseImageFile);
-      const width = state.newImageWidth ?? state.baseImageWidth;
-      const height = state.newImageHeight ?? state.baseImageHeight;
+      const width = state.newImageWidth || state.baseImageWidth;
+      const height = state.newImageHeight || state.baseImageHeight;
 
       const res = await axios.post(
         `https://remake-it.herokuapp.com/api/v1/download?extension=${state.updatedImageFileType}&filter=${state.selectedFilter}&width=${width}&height=${height}`,
