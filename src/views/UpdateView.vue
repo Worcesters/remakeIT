@@ -10,7 +10,23 @@
         </header>
         <main class="overlay__inner__content">
           <div class="overlay__inner__content__image-preview">
-            <img :src="file" alt="" />
+            <div class="overlay__inner__content__image-preview__wrapper">
+              <div
+                class="overlay__inner__content__image-preview__wrapper__loader"
+                v-if="isImageLoading"
+              >
+                <div
+                  class="overlay__inner__content__image-preview__wrapper__loader__icon"
+                >
+                  <i class="bx bx-loader-circle bx-spin"></i>
+                </div>
+              </div>
+              <div
+                class="overlay__inner__content__image-preview__wrapper__image"
+              >
+                <img :src="file" alt="" />
+              </div>
+            </div>
           </div>
           <div class="overlay__inner__content__modification">
             <FilterModify v-if="navbarActive === 'filter'" />
@@ -53,6 +69,9 @@ export default {
     },
     file() {
       return this.$store.state.updatedImageURL;
+    },
+    isImageLoading() {
+      return this.$store.state.isImageLoading;
     },
   },
   created() {
@@ -99,9 +118,11 @@ export default {
 
   --font-family: "Poppins", system-ui;
 
-  --bg-gradient: linear-gradient(to bottom,
-          hsl(var(--hue), 95%, 99%),
-          hsl(var(--hue), 95%, 84%));
+  --bg-gradient: linear-gradient(
+    to bottom,
+    hsl(var(--hue), 95%, 99%),
+    hsl(var(--hue), 95%, 84%)
+  );
 }
 body {
   min-height: 100vh;
@@ -133,9 +154,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  background: linear-gradient(45deg,
-                var(--base) 25%,
-                var(--complimentary2));  
+  background: linear-gradient(45deg, var(--base) 25%, var(--complimentary2));
   color: #fff;
   box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
   transition: all 0.2s ease-in-out;
@@ -180,9 +199,11 @@ body {
         h1 {
           font-size: 2rem;
           font-weight: 800;
-          background: linear-gradient(45deg,
-                var(--base) 25%,
-                var(--complimentary2));
+          background: linear-gradient(
+            45deg,
+            var(--base) 25%,
+            var(--complimentary2)
+          );
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -208,12 +229,41 @@ body {
           align-items: center;
           display: flex;
 
-          img {
-            width: 100%;
-            max-height: inherit;
-            max-width: fit-content;
+          &__wrapper {
+            position: relative;
             border-radius: 20px;
+            overflow: clip;
             box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+
+            &__loader {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: #00000090;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              &__icon {
+                i {
+                  font-size: 5rem;
+                  color: var(--light-color);
+                }
+              }
+            }
+
+            &__image {
+              border-radius: 20px;
+              display: flex;
+
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+              }
+            }
           }
         }
       }

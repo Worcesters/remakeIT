@@ -21,6 +21,10 @@ export default {
     return {
       filters: [
         {
+          code: "",
+          name: "Aucun filtre",
+        },
+        {
           code: "grayScale",
           name: "Nuances de gris",
         },

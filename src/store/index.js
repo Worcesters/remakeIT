@@ -17,9 +17,9 @@ export default new Vuex.Store({
     updatedImageFileName: null,
     updatedImageFileSize: null,
     updatedImageFileType: null,
-    isImageLoaded: false,
     navbarActive: "filter",
     selectedFilter: "default",
+    isImageLoading: false,
   },
   getters: {},
   mutations: {
@@ -43,18 +43,19 @@ export default new Vuex.Store({
       state.updatedImageFileName = payload.fileName;
       state.updatedImageFileSize = payload.fileSize;
       state.updatedImageFileType = payload.fileType;
-      state.isImageLoaded = true;
+      state.isImageLoading = false;
     },
     setUpdatedFile(state, payload) {
-      console.log("setUpdatedFile", payload);
       state.updatedImageURL = payload.url;
       state.updatedImageFile = payload.file;
       state.updatedImageFileName = payload.fileName;
       state.updatedImageFileType = payload.fileType;
+      state.isImageLoading = false;
     },
   },
   actions: {
     async updateImageFileType({ state, commit }) {
+      state.isImageLoading = true;
       // https://remake-it.herokuapp.com/api/v1/download
       const formData = new FormData();
       formData.append("file", state.baseImageFile);
@@ -78,6 +79,7 @@ export default new Vuex.Store({
       });
     },
     async requestUpdatedImageFile({ state, commit }) {
+      state.isImageLoading = true;
       // https://remake-it.herokuapp.com/api/v1/download
       const formData = new FormData();
       formData.append("file", state.baseImageFile);
