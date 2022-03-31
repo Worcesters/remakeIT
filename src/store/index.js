@@ -38,11 +38,15 @@ export default new Vuex.Store({
       state.baseImageFileName = payload.fileName;
       state.baseImageFileSize = payload.fileSize;
       state.baseImageFileType = payload.fileType;
+      state.baseImageWidth = payload.width;
+      state.baseImageHeight = payload.height;
       state.updatedImageURL = payload.url;
       state.updatedImageFile = payload.file;
       state.updatedImageFileName = payload.fileName;
       state.updatedImageFileSize = payload.fileSize;
       state.updatedImageFileType = payload.fileType;
+      state.updatedImageWidth = payload.width;
+      state.updatedImageHeight = payload.height;
       state.isImageLoading = false;
     },
     setUpdatedFile(state, payload) {

@@ -4,11 +4,21 @@
       <div class="overlay__inner">
         <header class="overlay__inner__title">
           <h1>RemakeIT</h1>
-          <h3 class="overlay__inner__content__right__text">Importer une image pour commencer !</h3>
+          <h3 class="overlay__inner__content__right__text">
+            Importer une image pour commencer !
+          </h3>
         </header>
         <main class="overlay__inner__content">
-          <div class="overlay__inner__content__left" @dragover.prevent @drop.prevent @click="dropImgClick()">
-            <div class="overlay__inner__content__left__upload" @drop="uploadFile">
+          <div
+            class="overlay__inner__content__left"
+            @dragover.prevent
+            @drop.prevent
+            @click="dropImgClick()"
+          >
+            <div
+              class="overlay__inner__content__left__upload"
+              @drop="uploadFile"
+            >
               <label class="required" for="upload_byfolder"></label>
               <input
                 autocomplete="file"
@@ -48,37 +58,44 @@
 <script>
 export default {
   name: "UpdateView",
-  data(){
+  data() {
     return {
-      File: '' // Store our uploaded files
-    }
+      File: "", // Store our uploaded files
+    };
   },
-  methods:{
+  methods: {
     dropImgClick() {
-      document.getElementById('upload_byfolder').click()
+      document.getElementById("upload_byfolder").click();
     },
     uploadFile(e) {
-      var file = ''
-      if( e.type != 'change' ){
+      var file = "";
+      if (e.type != "change") {
         this.File = e.dataTransfer.files;
-        file = this.File[0]
-      }else{
+        file = this.File[0];
+      } else {
         this.File = e.target.files;
-        file = this.File[0]
+        file = this.File[0];
       }
-      var url = URL.createObjectURL(file)
+      var url = URL.createObjectURL(file);
 
-      // Save file in store
-      this.$store.commit('setFile', {
-        file,
-        url,
-        fileName: file.name,
-        fileSize: file.size,
-        fileType: file.name.split('.').pop(),
-      })
-      this.$router.push('/update')
-    }
-  }
+      // Get image width and height
+      var img = new Image();
+      img.src = url;
+      img.onload = () => {
+        this.$store.commit("setFile", {
+          file,
+          url,
+          fileName: file.name,
+          fileSize: file.size,
+          fileType: file.name.split(".").pop(),
+          width: img.width,
+          height: img.height,
+        });
+
+        this.$router.push("/update");
+      };
+    },
+  },
 };
 </script>
 
@@ -92,9 +109,11 @@ export default {
 
   --font-family: "Poppins", system-ui;
 
-  --bg-gradient: linear-gradient(to bottom,
-          hsl(var(--hue), 95%, 99%),
-          hsl(var(--hue), 95%, 84%));
+  --bg-gradient: linear-gradient(
+    to bottom,
+    hsl(var(--hue), 95%, 99%),
+    hsl(var(--hue), 95%, 84%)
+  );
 }
 body {
   display: grid;
@@ -115,7 +134,7 @@ body {
   z-index: -1;
 }
 
-#upload_byfolder{
+#upload_byfolder {
   visibility: hidden;
 }
 
@@ -125,9 +144,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  background: linear-gradient(45deg,
-                var(--base) 25%,
-                var(--complimentary2));
+  background: linear-gradient(45deg, var(--base) 25%, var(--complimentary2));
   color: #fff;
   box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
   transition: all 0.2s ease-in-out;
@@ -152,9 +169,8 @@ body {
     background: rgba(255, 255, 255, 0.375);
     box-shadow: 0 0.75rem 2rem 0 rgb(0 0 0 / 10%);
     border-radius: 2rem;
-    border: 1px solid linear-gradient(45deg,
-                var(--base) 25%,
-                var(--complimentary2));
+    border: 1px solid
+      linear-gradient(45deg, var(--base) 25%, var(--complimentary2));
 
     &__inner {
       min-width: 100%;
@@ -168,15 +184,17 @@ body {
         h1 {
           font-size: 2rem;
           font-weight: 800;
-          background: linear-gradient(45deg,
-                var(--base) 25%,
-                var(--complimentary2));
+          background: linear-gradient(
+            45deg,
+            var(--base) 25%,
+            var(--complimentary2)
+          );
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
           text-align: left;
         }
-        h3{
+        h3 {
           margin: 2rem 0 1rem 0;
         }
       }
@@ -223,9 +241,11 @@ body {
               i {
                 font-size: 5rem;
                 color: transparent;
-                background-image: linear-gradient(45deg,
-                var(--base) 25%,
-                var(--complimentary2));
+                background-image: linear-gradient(
+                  45deg,
+                  var(--base) 25%,
+                  var(--complimentary2)
+                );
                 -webkit-background-clip: text;
                 background-clip: text;
                 -webkit-text-fill-color: transparent;
