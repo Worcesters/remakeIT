@@ -86,7 +86,7 @@ export default {
   methods: {
     reset() {
       this.currentPercentage = 0;
-      this.$store.commit("updateImageNewHeight", 0);
+      this.$store.commit("updateImageNewWidth", 0);
       this.$store.commit("updateImageNewHeight", 0);
     },
     updateHeight(e) {
