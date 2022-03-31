@@ -25,6 +25,10 @@ export default {
           name: "Nuances de gris",
         },
         {
+          code: "sepia",
+          name: " Teintes - Vieille photo",
+        },
+        {
           code: "hsv",
           name: "Teinte - Saturation - Valeur",
         },

@@ -90,6 +90,39 @@ export default {
 </script>
 
 <style lang="scss">
+:root {
+  --dark-color: hsl(var(--hue), 100%, 9%);
+  --light-color: hsl(var(--hue), 95%, 98%);
+  --base: hsl(var(--hue), 95%, 50%);
+  --complimentary1: hsl(var(--hue-complimentary1), 95%, 50%);
+  --complimentary2: hsl(var(--hue-complimentary2), 95%, 50%);
+
+  --font-family: "Poppins", system-ui;
+
+  --bg-gradient: linear-gradient(to bottom,
+          hsl(var(--hue), 95%, 99%),
+          hsl(var(--hue), 95%, 84%));
+}
+body {
+  max-width: 1920px;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  font-family: var(--font-family);
+  color: var(--dark-color);
+  background: var(--bg-gradient);
+}
+.orb-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
 .overlay__inner__content__right__text {
   font-size: 1rem;
   font-weight: 800;
@@ -117,9 +150,7 @@ export default {
 }
 
 #modifyView {
-  background: #f8f8ff;
   min-height: 100vh;
-  min-width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -175,6 +206,8 @@ export default {
 
           img {
             width: 100%;
+            max-height: inherit;
+            max-width: fit-content;
             border-radius: 20px;
             box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
           }

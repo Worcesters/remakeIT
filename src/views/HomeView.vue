@@ -7,6 +7,7 @@
           <h3 class="overlay__inner__content__right__text">Importer une image pour commencer !</h3>
         </header>
         <main class="overlay__inner__content">
+          <canvas class="orb-canvas"></canvas>
           <div class="overlay__inner__content__left" @dragover.prevent @drop.prevent @click="dropImgClick()">
             <div class="overlay__inner__content__left__upload" @drop="uploadFile">
               <label class="required" for="upload_byfolder"></label>
@@ -83,6 +84,38 @@ export default {
 </script>
 
 <style lang="scss">
+:root {
+  --dark-color: hsl(var(--hue), 100%, 9%);
+  --light-color: hsl(var(--hue), 95%, 98%);
+  --base: hsl(var(--hue), 95%, 50%);
+  --complimentary1: hsl(var(--hue-complimentary1), 95%, 50%);
+  --complimentary2: hsl(var(--hue-complimentary2), 95%, 50%);
+
+  --font-family: "Poppins", system-ui;
+
+  --bg-gradient: linear-gradient(to bottom,
+          hsl(var(--hue), 95%, 99%),
+          hsl(var(--hue), 95%, 84%));
+}
+body {
+  max-width: 1920px;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  font-family: var(--font-family);
+  color: var(--dark-color);
+  background: var(--bg-gradient);
+}
+.orb-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
 
 #upload_byfolder{
   visibility: hidden;
@@ -94,7 +127,9 @@ export default {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  background: linear-gradient(45deg, #7a3af9 25%, #e1079a);
+  background: linear-gradient(45deg,
+                var(--base) 25%,
+                var(--complimentary2));
   color: #fff;
   box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
   transition: all 0.2s ease-in-out;
@@ -107,9 +142,7 @@ export default {
 }
 
 #homeView {
-  background: #f8f8ff;
   min-height: 100vh;
-  min-width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -121,7 +154,9 @@ export default {
     background: rgba(255, 255, 255, 0.375);
     box-shadow: 0 0.75rem 2rem 0 rgb(0 0 0 / 10%);
     border-radius: 2rem;
-    border: 1px solid linear-gradient(45deg, #7a3af9 25%, #e1079a);
+    border: 1px solid linear-gradient(45deg,
+                var(--base) 25%,
+                var(--complimentary2));
 
     &__inner {
       min-width: 100%;
@@ -135,7 +170,9 @@ export default {
         h1 {
           font-size: 2rem;
           font-weight: 800;
-          background: linear-gradient(45deg, #7a3af9 25%, #e1079a);
+          background: linear-gradient(45deg,
+                var(--base) 25%,
+                var(--complimentary2));
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -187,7 +224,14 @@ export default {
 
               i {
                 font-size: 5rem;
-                color: #7a3af9;
+                color: transparent;
+                background-image: linear-gradient(45deg,
+                var(--base) 25%,
+                var(--complimentary2));
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-align: left;
               }
             }
           }
