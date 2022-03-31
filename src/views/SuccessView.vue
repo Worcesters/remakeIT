@@ -68,8 +68,6 @@ export default {
 }
 
 body {
-  max-width: 1920px;
-  min-height: 100vh;
   display: grid;
   place-items: center;
   font-family: var(--font-family);
