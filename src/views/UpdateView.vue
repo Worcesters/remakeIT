@@ -98,6 +98,8 @@ export default {
           document.body.appendChild(downloadLink);
           downloadLink.click();
           document.body.removeChild(downloadLink);
+
+          this.$router.push("/success");
         })
 
         .catch((e) => {

@@ -15,9 +15,9 @@ const routes = [
     component: () => import('../views/UpdateView.vue')
   },
   {
-    path: '/validate',
-    name: 'validate',
-    component: () => import('../views/ValidateView.vue')
+    path: '/success',
+    name: 'success',
+    component: () => import('../views/SuccessView.vue')
   },
 ]
 
