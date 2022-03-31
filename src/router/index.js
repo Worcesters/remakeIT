@@ -14,6 +14,11 @@ const routes = [
     name: 'update',
     component: () => import('../views/UpdateView.vue')
   },
+  {
+    path: '/validate',
+    name: 'validate',
+    component: () => import('../views/ValidateView.vue')
+  },
 ]
 
 const router = new VueRouter({

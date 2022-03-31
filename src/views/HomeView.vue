@@ -54,6 +54,11 @@ export default {
       File: '' // Store our uploaded files
     }
   },
+  mounted: function(){
+    window.addEventListener('load', () => {
+         // run after everything is in-place
+    })
+  },
   methods:{
     dropImgClick() {
       document.getElementById('upload_byfolder').click()
@@ -98,8 +103,6 @@ export default {
           hsl(var(--hue), 95%, 84%));
 }
 body {
-  max-width: 1920px;
-  min-height: 100vh;
   display: grid;
   place-items: center;
   padding: 2rem;
