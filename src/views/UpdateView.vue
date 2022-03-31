@@ -9,7 +9,6 @@
           </h3>
         </header>
         <main class="overlay__inner__content">
-          <canvas class="orb-canvas"></canvas>
           <div class="overlay__inner__content__image-preview">
             <img :src="file" alt="" />
           </div>
@@ -105,7 +104,6 @@ export default {
           hsl(var(--hue), 95%, 84%));
 }
 body {
-  max-width: 1920px;
   min-height: 100vh;
   display: grid;
   place-items: center;
@@ -113,6 +111,7 @@ body {
   font-family: var(--font-family);
   color: var(--dark-color);
   background: var(--bg-gradient);
+  overflow: clip;
 }
 .orb-canvas {
   position: fixed;

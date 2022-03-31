@@ -7,7 +7,6 @@
           <h3 class="overlay__inner__content__right__text">Importer une image pour commencer !</h3>
         </header>
         <main class="overlay__inner__content">
-          <canvas class="orb-canvas"></canvas>
           <div class="overlay__inner__content__left" @dragover.prevent @drop.prevent @click="dropImgClick()">
             <div class="overlay__inner__content__left__upload" @drop="uploadFile">
               <label class="required" for="upload_byfolder"></label>
@@ -53,11 +52,6 @@ export default {
     return {
       File: '' // Store our uploaded files
     }
-  },
-  mounted: function(){
-    window.addEventListener('load', () => {
-         // run after everything is in-place
-    })
   },
   methods:{
     dropImgClick() {
@@ -106,6 +100,7 @@ body {
   display: grid;
   place-items: center;
   padding: 2rem;
+  overflow: clip;
   font-family: var(--font-family);
   color: var(--dark-color);
   background: var(--bg-gradient);

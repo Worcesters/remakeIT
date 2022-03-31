@@ -6,7 +6,6 @@
           <h1>RemakeIT</h1>
         </header>
         <main class="overlay__inner__content">
-          <canvas class="orb-canvas"></canvas>
           <h3 class="overlay__inner__content__right__text">
            Merci d'avoir utiliser notre application !
           </h3>
@@ -61,6 +60,7 @@ body {
   font-family: var(--font-family);
   color: var(--dark-color);
   background: var(--bg-gradient);
+  overflow: clip;
 }
 .orb-canvas {
   position: fixed;
