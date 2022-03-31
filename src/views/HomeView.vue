@@ -8,7 +8,7 @@
         </header>
         <main class="overlay__inner__content">
           <div class="overlay__inner__content__left" @dragover.prevent @drop.prevent @click="dropImgClick()">
-            <div class="overlay__inner__content__left__upload" @drop="dragFile">
+            <div class="overlay__inner__content__left__upload" @drop="uploadFile">
               <label class="required" for="upload_byfolder"></label>
               <input
                 autocomplete="file"
@@ -57,27 +57,17 @@ export default {
     dropImgClick() {
       document.getElementById('upload_byfolder').click()
     },
-    dragFile(e) {
-      this.File = e.dataTransfer.files;
-      const file = this.File[0]
-      const url = URL.createObjectURL(file)
-      //console.log(this.File)
-      this.$store.commit('setFile', {
-        file,
-        url,
-        fileName: file.name,
-        fileSize: file.size,
-        fileType: file.name.split('.').pop(),
-      })
-      this.$router.push('/update')
-    },
     uploadFile(e) {
-      console.log(e)
-      console.log(e.target.files)
-    
-      const file = e.target.files[0]
-      const url = URL.createObjectURL(file)
-  
+      var file = ''
+      if( e.type != 'change' ){
+        this.File = e.dataTransfer.files;
+        file = this.File[0]
+      }else{
+        this.File = e.target.files;
+        file = this.File[0]
+      }
+      var url = URL.createObjectURL(file)
+
       // Save file in store
       this.$store.commit('setFile', {
         file,
