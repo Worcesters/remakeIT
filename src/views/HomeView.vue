@@ -48,7 +48,19 @@
           </div>
         </main>
         <footer class="overlay__inner__footer">
-          <h3>Made with ❤️ by bcp de gens</h3>
+          <h3>Made with ❤️ and some ☕ by</h3>
+          <div class="overlay__inner__footer__authors">
+            <a
+              :key="author.name"
+              v-for="author in authorList"
+              class="overlay__inner__footer__authors__author button black"
+              target="_blank"
+              :href="author.github"
+            >
+              <i class="bx bxl-github"></i>
+              {{ author.name }}
+            </a>
+          </div>
         </footer>
       </div>
     </section>
@@ -62,6 +74,14 @@ export default {
     return {
       File: "", // Store our uploaded files
     };
+  },
+  created() {
+    this.$store.dispatch("getUsersList");
+  },
+  computed: {
+    authorList() {
+      return this.$store.state.authorList;
+    },
   },
   methods: {
     dropImgClick() {
@@ -148,6 +168,17 @@ body {
   color: #fff;
   box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
   transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  i {
+    font-size: 1.5rem;
+  }
+
+  &.black {
+    padding: 1em 1.5em;
+  }
 
   &:hover {
     transform: translateY(-3px);
@@ -282,8 +313,19 @@ body {
 
       &__footer {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 1rem;
+        font-weight: 700;
+
+        &__authors {
+          font-size: 0.75rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+        }
       }
     }
   }

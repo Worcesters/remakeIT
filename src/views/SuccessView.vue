@@ -10,12 +10,26 @@
             Merci d'avoir utiliser notre application !
           </h3>
         </main>
-        <section class="overlay__inner__manga"></section>
+        <section class="overlay__inner__manga">
+          <img src="../assets/luffy-smile.gif" />
+        </section>
         <footer class="overlay__inner__footer">
-          <div class="button black">
-            <i class="bx bxl-github"></i>
-            <a href=" https://github.com/TheoBIET/remakeIT" target="_blank">
-              Github
+          <div class="flex">
+            <a
+              href="https://github.com/TheoBIET/remakeIT-API"
+              target="_blank"
+              class="button black"
+            >
+              <i class="bx bxl-github"></i>
+              RemakeIT-API
+            </a>
+            <a
+              href="https://github.com/TheoBIET/remakeIT"
+              target="_blank"
+              class="button black"
+            >
+              <i class="bx bxl-github"></i>
+              RemakeIT
             </a>
           </div>
           <div class="button red" @click="backHome">
@@ -122,6 +136,13 @@ body {
   }
 }
 
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
 #successView {
   min-height: 100vh;
   display: flex;
@@ -200,16 +221,25 @@ body {
             max-width: fit-content;
             border-radius: 20px;
             box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+              rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
           }
         }
       }
 
       &__manga {
         flex: 2;
+        display: flex;
+
+        img {
+          margin: auto;
+          border-radius: 20px;
+        }
       }
 
       &__footer {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 1rem;

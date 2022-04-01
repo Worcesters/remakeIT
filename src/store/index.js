@@ -25,6 +25,7 @@ export default new Vuex.Store({
     newImageWidth: null,
     newImageHeight: null,
     currentCompression: 0,
+    authorList: [],
   },
   getters: {},
   mutations: {
@@ -90,8 +91,17 @@ export default new Vuex.Store({
       state.newImageHeight = null;
       state.currentCompression = 0;
     },
+    setAuthorList(state, payload) {
+      state.authorList = payload;
+    }
   },
   actions: {
+    async getUsersList({ commit }) {
+      const response = await axios.get(
+        "https://remake-it.herokuapp.com/api/v1/"
+      );
+      commit("setAuthorList", response.data?.authors);
+    },
     async updateImageFileType({ state, commit }) {
       state.isImageLoading = true;
       // https://remake-it.herokuapp.com/api/v1/download
