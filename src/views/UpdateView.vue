@@ -102,8 +102,8 @@ export default {
           this.$router.push("/success");
         })
 
-        .catch((e) => {
-          console.log(e);
+        .catch(() => {
+          console.log("Une erreur s'est produite");
         });
     },
     backHome() {
