@@ -71,10 +71,6 @@ export default {
           icon: "bx bxs-file-gif",
         },
         {
-          name: "JPG",
-          icon: "bx bxs-file-jpg",
-        },
-        {
           name: "WEBP",
           icon: "bx bx-image",
         },
@@ -83,8 +79,8 @@ export default {
           icon: "bx bxs-file-jpeg",
         },
         {
-          name: "BMP",
-          icon: "bx bx-image",
+          name: "JPG",
+          icon: "bx bxs-file-jpg",
         },
         {
           name: "TIFF",
