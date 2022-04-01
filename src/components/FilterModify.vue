@@ -21,7 +21,7 @@ export default {
     return {
       filters: [
         {
-          code: "",
+          code: "default",
           name: "Aucun filtre",
         },
         {
