@@ -67,6 +67,10 @@ export default {
           icon: "bx bxs-file-png",
         },
         {
+          name: "GIF",
+          icon: "bx bxs-file-gif",
+        },
+        {
           name: "JPG",
           icon: "bx bxs-file-jpg",
         },

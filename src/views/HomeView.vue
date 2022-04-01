@@ -24,7 +24,7 @@
                 autocomplete="file"
                 id="upload_byfolder"
                 type="file"
-                accept=".png,.jpg,.jpeg,.svg"
+                accept=".png,.jpg,.jpeg,.webp,.gif"
                 name="file"
                 class="form__input"
                 placeholder="Importer ou drop une image"
