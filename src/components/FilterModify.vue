@@ -25,12 +25,16 @@ export default {
           name: "Aucun filtre",
         },
         {
+          code: "anaglyph",
+          name: "Anaglyphe",
+        },
+        {
           code: "grayScale",
           name: "Nuances de gris",
         },
         {
           code: "sepia",
-          name: " Teintes - Vieille photo",
+          name: "Sepia",
         },
         {
           code: "invert",
@@ -43,10 +47,6 @@ export default {
         {
           code: "4bit",
           name: "4 bits",
-        },
-        {
-          code: "8bit",
-          name: "8 bits",
         },
         {
           code: "mirror",
