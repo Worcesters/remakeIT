@@ -10,7 +10,7 @@
             <i
               :class="
                 extensions.find(
-                  (e) => e.name.toLowerCase() === baseImageFileType
+                  (e) => e.name.toLowerCase() === baseImageFileType.toLowerCase()
                 ).icon
               "
             ></i>
